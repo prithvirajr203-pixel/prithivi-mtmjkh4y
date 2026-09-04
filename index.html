@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prithivi</title>
+  <style>
+    :root{--primary-bg:#2E3B4E;--accent:#FF6F61;--neutral-light:#F5F5F5;--neutral-dark:#333333;--text-light:#FFFFFF;--text-dark:#000000;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:Arial,Helvetica,sans-serif;background:var(--neutral-light);color:var(--text-dark);}
+    a{color:inherit;text-decoration:none;}
+    header{background:var(--primary-bg);color:var(--text-light);padding:10px 20px;position:sticky;top:0;z-index:1000;}
+    nav{display:flex;justify-content:center;gap:20px;}
+    nav a{font-weight:600;}
+    section{padding:60px 20px;}
+    /* Hero */
+    #hero{background:url('https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;color:var(--text-light);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;min-height:80vh;}
+    #hero h1{font-size:3rem;margin-bottom:0.5rem;}
+    #hero p{font-size:1.25rem;margin-bottom:1.5rem;max-width:600px;}
+    #hero button{background:var(--accent);color:var(--text-light);border:none;padding:12px 24px;font-size:1rem;border-radius:4px;cursor:pointer;}
+    /* About */
+    #about{display:flex;flex-wrap:wrap;align-items:center;gap:20px;}
+    #about .about-img{flex:1 1 300px;max-width:500px;}
+    #about .about-img img{width:100%;height:auto;border-radius:8px;}
+    #about .about-text{flex:2 1 300px;}
+    #about h2{margin-bottom:1rem;}
+    #about p{margin-bottom:1rem;}
+    #about ul{list-style:none;}
+    #about li{margin-bottom:0.5rem;}
+    /* Menu */
+    #menu{background:var(--accent);color:var(--text-light);}
+    #menu h2{margin-bottom:1rem;text-align:center;}
+    #menu .tabs{display:flex;justify-content:center;gap:10px;margin-bottom:20px;}
+    #menu .tabs button{background:rgba(255,255,255,0.2);border:none;color:var(--text-light);padding:8px 16px;border-radius:4px;cursor:pointer;}
+    #menu .tabs button.active{background:var(--text-light);color:var(--accent);}
+    #menu .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;}
+    #menu .menu-item{background:rgba(255,255,255,0.1);border-radius:8px;padding:10px;}
+    #menu .menu-item img{width:100%;height:auto;border-radius:4px;margin-bottom:10px;}
+    #menu .menu-item h3{margin-bottom:5px;}
+    #menu .menu-item p{font-size:0.9rem;margin-bottom:5px;}
+    #menu .menu-item .price{font-weight:bold;}
+    /* Order */
+    #order{background:var(--primary-bg);color:var(--text-light);display:flex;flex-wrap:wrap;gap:20px;}
+    #order .order-form{flex:1 1 300px;max-width:600px;}
+    #order .order-form h2{margin-bottom:1rem;}
+    #order .order-form form{display:flex;flex-direction:column;gap:10px;}
+    #order .order-form input,#order .order-form select,#order .order-form textarea{padding:8px;border:none;border-radius:4px;}
+    #order .order-form textarea{resize:none;}
+    #order .order-form button{background:var(--accent);color:var(--text-light);border:none;padding:12px 24px;font-size:1rem;border-radius:4px;cursor:pointer;}
+    #order .order-image{flex:1 1 300px;max-width:500px;}
+    #order .order-image img{width:100%;height:auto;border-radius:8px;}
+    #order iframe{width:100%;height:200px;border:0;border-radius:8px;margin-top:10px;}
+    /* Gallery */
+    #gallery{background:var(--neutral-dark);color:var(--text-light);}
+    #gallery h2{margin-bottom:1rem;text-align:center;}
+    #gallery .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;}
+    #gallery .gallery-grid img{width:100%;height:auto;border-radius:4px;cursor:pointer;}
+    .lightbox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:none;justify-content:center;align-items:center;z-index:2000;}
+    .lightbox img{max-width:90%;max-height:90%;border-radius:8px;}
+    /* Location */
+    #location{background:var(--accent);color:var(--text-light);display:flex;flex-wrap:wrap;gap:20px;}
+    #location .location-text{flex:1 1 300px;max-width:600px;}
+    #location .location-text h2{margin-bottom:1rem;}
+    #location .location-text p{margin-bottom:1rem;}
+    #location .location-text button{background:var(--primary-bg);color:var(--text-light);border:none;padding:12px 24px;font-size:1rem;border-radius:4px;cursor:pointer;}
+    #location .location-map{flex:1 1 300px;max-width:500px;}
+    #location .location-map iframe{width:100%;height:300px;border:0;border-radius:8px;}
+    /* Contact */
+    #contact{display:flex;flex-wrap:wrap;gap:20px;}
+    #contact .contact-form{flex:1 1 300px;max-width:600px;}
+    #contact .contact-form h2{margin-bottom:1rem;}
+    #contact .contact-form form{display:flex;flex-direction:column;gap:10px;}
+    #contact .contact-form input,#contact .contact-form textarea{padding:8px;border:none;border-radius:4px;}
+    #contact .contact-form textarea{resize:none;}
+    #contact .contact-form button{background:var(--accent);color:var(--text-light);border:none;padding:12px 24px;font-size:1rem;border-radius:4px;cursor:pointer;}
+    #contact .contact-info{flex:1 1 300px;max-width:400px;}
+    #contact .contact-info h3{margin-bottom:0.5rem;}
+    #contact .contact-info p{margin-bottom:0.5rem;}
+    /* Footer */
+    footer{background:var(--primary-bg);color:var(--text-light);text-align:center;padding:20px;}
+    @media(max-width:768px){#about,#order,#location,#contact{flex-direction:column;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#about">About Us</a>
+      <a href="#menu">Menu</a>
+      <a href="#order">Order Online</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#location">Location</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h1>Brewed to Perfection</h1>
+    <p>At Prithivi, we bring you the finest beans, roasted to unlock bold flavors that energize your day. Whether you’re a student cramming, a professional on the go, or a family gathering, our café is your cozy spot.</p>
+    <button onclick="document.getElementById('order').scrollIntoView({behavior:'smooth'});">Order Now</button>
+  </section>
+
+  <section id="about">
+    <div class="about-img"><img src="https://images.unsplash.com/photo-1523986371872-9d3b1c5b1b6b?auto=format&fit=crop&w=800&q=80" alt="Cafe interior"></div>
+    <div class="about-text">
+      <h2>Our Story, Your Cup</h2>
+      <p>Founded in 2015, Prithivi started as a small neighborhood roastery with a passion for sustainable sourcing and community connection. We believe every cup should tell a story—of farmers, of flavor, and of shared moments.</p>
+      <ul>
+        <li>Sustainable sourcing</li>
+        <li>Community focus</li>
+        <li>Quality craftsmanship</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2>Explore Our Menu</h2>
+    <div class="tabs">
+      <button class="tab active" data-filter="all">All</button>
+      <button class="tab" data-filter="espresso">Espresso</button>
+      <button class="tab" data-filter="latte">Latte</button>
+      <button class="tab" data-filter="cold">Cold Brew</button>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item" data-category="espresso">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Espresso">
+        <h3>Classic Espresso</h3>
+        <p>Rich and bold, a true espresso experience.</p>
+        <span class="price">$3.00</span>
+      </div>
+      <div class="menu-item" data-category="latte">
+        <img src="https://images.unsplash.com/photo-1523986371872-9d3b1c5b1b6b?auto=format&fit=crop&w=400&q=80" alt="Latte">
+        <h3>Vanilla Latte</h3>
+        <p>Smooth milk with a hint of vanilla.</p>
+        <span class="price">$4.50</span>
+      </div>
+      <div class="menu-item" data-category="cold">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Cold Brew">
+        <h3>Cold Brew</h3>
+        <p>Slow-steeped for a smooth finish.</p>
+        <span class="price">$4.00</span>
+      </div>
+      <div class="menu-item" data-category="espresso">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Espresso">
+        <h3>Americano</h3>
+        <p>Espresso diluted with hot water.</p>
+        <span class="price">$3.50</span>
+      </div>
+      <div class="menu-item" data-category="latte">
+        <img src="https://images.unsplash.com/photo-1523986371872-9d3b1c5b1b6b?auto=format&fit=crop&w=400&q=80" alt="Latte">
+        <h3>Caramel Latte</h3>
+        <p>Sweet caramel with creamy milk.</p>
+        <span class="price">$4.75</span>
+      </div>
+      <div class="menu-item" data-category="cold">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Cold Brew">
+        <h3>Iced Latte</h3>
+        <p>Cold milk and espresso over ice.</p>
+        <span class="price">$4.25</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="order">
+    <div class="order-form">
+      <h2>Order Online for Pickup or Delivery</h2>
+      <p>Skip the line and have your favorite Prithivi brew ready when you arrive. Choose pickup or delivery, customize your order, and enjoy the convenience.</p>
+      <form id="orderForm">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Phone" required>
+        <select name="delivery" required>
+          <option value="pickup">Pickup</option>
+          <option value="delivery">Delivery</option>
+        </select>
+        <select name="item" required>
+          <option value="espresso">Classic Espresso - $3.00</option>
+          <option value="latte">Vanilla Latte - $4.50</option>
+          <option value="cold">Cold Brew - $4.00</option>
+        </select>
+        <input type="number" name="quantity" placeholder="Quantity" min="1" value="1" required>
+        <textarea name="instructions" placeholder="Special instructions"></textarea>
+        <button type="submit">Place Order</button>
+      </form>
+    </div>
+    <div class="order-image"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Coffee cup"></div>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019842593842!2d-122.419415084681!3d37.774929779759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5b1e5b1b%3A0x5b1e5b1b5b1e5b1b!2s123%20Brew%20Lane%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1610000000000" allowfullscreen="" loading="lazy"></iframe>
+  </section>
+
+  <section id="gallery">
+    <h2>Inside Prithivi</h2>
+    <p>Take a visual tour of our warm, inviting space and the artful drinks that make us unique. From latte art to rustic décor, every photo captures the essence of our café.</p>
+    <div class="gallery-grid">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Gallery 1">
+      <img src="https://images.unsplash.com/photo-1523986371872-9d3b1c5b1b6b?auto=format&fit=crop&w=400&q=80" alt="Gallery 2">
+      <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Gallery 3">
+      <img src="https://images.unsplash.com/photo-1523986371872-9d3b1c5b1b6b?auto=format&fit=crop&w=400&q=80" alt="Gallery 4">
+    </div>
+  </section>
+
+  <section id="location">
+    <div class="location-text">
+      <h2>Find Us</h2>
+      <p>We’re located at 123 Brew Lane, right in the heart of the city, just steps from the university and downtown. Drop by for a cup or let us bring it to you.</p>
+      <button onclick="window.open('https://www.google.com/maps/dir/?api=1&destination=123+Brew+Lane', '_blank');">Get Directions</button>
+    </div>
+    <div class="location-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.019842593842!2d-122.419415084681!3d37.774929779759!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c5b1e5b1b%3A0x5b1e5b1b5b1e5b1b!2s123%20Brew%20Lane%2C%20San%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1610000000000" allowfullscreen="" loading="lazy"></iframe></div>
+  </section>
+
+  <section id="contact">
+    <div class="contact-form">
+      <h2>Get in Touch</h2>
+      <p>Have questions, feedback, or just want to say hi? Reach out through our quick form or call us at (555) 123-4567. We’re here to help.</p>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="text" name="subject" placeholder="Subject" required>
+        <textarea name="message" placeholder="Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+    <div class="contact-info">
+      <h3>Contact Info</h3>
+      <p>Phone: (555) 123-4567</p>
+      <p>Email: info@prithivi.com</p>
+      <p>Address: 123 Brew Lane, San Francisco, CA</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Prithivi. All rights reserved.</p>
+  </footer>
+
+  <div class="lightbox" id="lightbox"><img src="" alt="Lightbox Image"></div>
+
+  <script>
+    // Menu tabs
+    const tabs=document.querySelectorAll('#menu .tab');
+    const items=document.querySelectorAll('#menu .menu-item');
+    tabs.forEach(tab=>{
+      tab.addEventListener('click',()=>{
+        tabs.forEach(t=>t.classList.remove('active'));
+        tab.classList.add('active');
+        const filter=tab.dataset.filter;
+        items.forEach(item=>{
+          if(filter==='all' || item.dataset.category===filter){
+            item.style.display='block';
+          }else{
+            item.style.display='none';
+          }
+        });
+      });
+    });
+    // Lightbox
+    const lightbox=document.getElementById('lightbox');
+    const lightboxImg=lightbox.querySelector('img');
+    document.querySelectorAll('#gallery .gallery-grid img').forEach(img=>{
+      img.addEventListener('click',()=>{
+        lightboxImg.src=img.src;
+        lightbox.style.display='flex';
+      });
+    });
+    lightbox.addEventListener('click',()=>{lightbox.style.display='none';});
+    // Form submissions (placeholder)
+    document.getElementById('orderForm').addEventListener('submit',e=>{e.preventDefault();alert('Order submitted!');});
+    document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();alert('Message sent!');});
+  </script>
+</body>
+</html>
